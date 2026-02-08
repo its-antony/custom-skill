@@ -1,0 +1,10 @@
+{
+  "name": "webclone-browser-engine",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "website-scraper": "^6.0.0",
+    "website-scraper-puppeteer": "^2.0.0"
+  }
+}
