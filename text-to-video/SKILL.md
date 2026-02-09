@@ -15,10 +15,13 @@ metadata:
 
 ## 项目信息
 
-- **代码位置**: `/Users/deme/workspace/mine/text-to-video`
 - **技术栈**: Remotion v4 + GSAP v3.12 + React 19 + TypeScript
 - **视频规格**: 1920x1080 (16:9), 30fps
 - **主题风格**: 深色系科技感，反 AI 审美
+- **入口文件**: `src/index.ts`
+- **预设目录**: `src/presets/`
+- **层组件目录**: `src/layers/`
+- **Composition 目录**: `src/compositions/`
 
 ## 核心架构
 
@@ -517,29 +520,24 @@ return (
 
 ## 常用命令
 
+所有命令在项目根目录下执行。
+
 ### 启动 Remotion Studio（预览）
 
 ```bash
-npx --prefix /Users/deme/workspace/mine/text-to-video remotion studio \
-  /Users/deme/workspace/mine/text-to-video/src/index.ts \
-  --port 3123 \
-  --public-dir /Users/deme/workspace/mine/text-to-video/public
+npx remotion studio src/index.ts --port 3123 --public-dir public
 ```
 
 ### TypeScript 检查
 
 ```bash
-npx --prefix /Users/deme/workspace/mine/text-to-video tsc --noEmit \
-  --project /Users/deme/workspace/mine/text-to-video/tsconfig.json
+npx tsc --noEmit
 ```
 
 ### 渲染视频
 
 ```bash
-npx --prefix /Users/deme/workspace/mine/text-to-video remotion render \
-  /Users/deme/workspace/mine/text-to-video/src/index.ts \
-  CompositionId \
-  /Users/deme/workspace/mine/text-to-video/out/video.mp4
+npx remotion render src/index.ts <CompositionId> out/video.mp4
 ```
 
 ## 创建新预设的模板
