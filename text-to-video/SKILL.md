@@ -3,10 +3,15 @@ name: text-to-video
 description: 使用 Remotion + GSAP 创建专业知识讲解视频。当用户需要创建讲解视频、演示视频、教程视频，或提到 Remotion/GSAP 动画视频时使用。
 ---
 
+## IMPORTANT: Read the design cookbook first
+
+**代码只是零件，组合方式决定画面质量。** 创建任何场景前，必须先阅读：
+
+- **[reference/design-cookbook.md](reference/design-cookbook.md)** — 速度分层、动画时序、背景搭配、装饰配方、场景类型配方、颜色禁忌、完整示例
+
 ## What this skill provides
 
-这个 skill 包含创建知识讲解视频所需的全部代码和知识：
-
+- **设计手册**: 如何组合出专业级画面（不是 PPT）
 - **核心 Hook**: `useGsapTimeline` — 桥接 Remotion 帧驱动和 GSAP 动画
 - **20 个动画预设组件**: 文字入场、列表、图表、流程图、转场等
 - **3 个层组件**: 背景层、装饰层、安全区
@@ -19,7 +24,8 @@ description: 使用 Remotion + GSAP 创建专业知识讲解视频。当用户�
 text-to-video/
 ├── SKILL.md                          ← 你在这里
 ├── reference/
-│   └── presets-api.md                ← 全部 20 个预设的 Props 速查
+│   ├── design-cookbook.md            ← ⭐ 设计手册（最重要！必读）
+│   └── presets-api.md               ← 全部 20 个预设的 Props 速查
 ├── templates/
 │   ├── theme.css                     ← CSS 变量主题（复制到项目）
 │   ├── useGsapTimeline.ts            ← 核心 Hook（复制到项目）
