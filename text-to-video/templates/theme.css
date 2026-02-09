@@ -1,0 +1,18 @@
+/**
+ * TextToVideo 主题
+ * 深色科技感，反 AI 审美
+ * 使用时 import 此文件：import "../styles/theme.css"
+ */
+:root {
+  --color-bg: #0a0a0f;
+  --color-surface: #14141f;
+  --color-primary: #e0e0e0;
+  --color-accent: #4a9eff;
+  --color-muted: #666680;
+
+  --font-heading: "Inter", "SF Pro Display", system-ui, sans-serif;
+  --font-body: "Inter", "SF Pro Text", system-ui, sans-serif;
+  --font-code: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
+
+  --border-radius: 8px;
+}
