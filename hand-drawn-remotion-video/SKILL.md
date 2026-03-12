@@ -1,6 +1,6 @@
 ---
 name: hand-drawn-remotion-video
-description: Use when creating Remotion explainer videos with hand-drawn Excalidraw-style visuals, SVG path animations, typewriter text effects, or sketch-style graphics on paper backgrounds
+description: 用 Remotion 制作手绘风格/Excalidraw风格/sketch风格的讲解视频、白板动画视频。包含 SVG 路径动画、打字机文字效果、手绘图形组件。Use when creating Remotion explainer videos with hand-drawn Excalidraw-style visuals, whiteboard animations, or sketch-style graphics.
 ---
 
 # Hand-Drawn Style Remotion Explainer Video
