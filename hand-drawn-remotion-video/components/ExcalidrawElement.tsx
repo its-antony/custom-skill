@@ -1,6 +1,26 @@
 import React from "react";
 import { useCurrentFrame, useVideoConfig, interpolate, Easing } from "remotion";
 
+// Mulberry32: deterministic PRNG from a single 32-bit seed
+function mulberry32(seed: number): () => number {
+  let s = seed | 0;
+  return () => {
+    s = (s + 0x6d2b79f5) | 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// Hash numeric params into a seed
+function hashSeed(...values: number[]): number {
+  let h = 0;
+  for (const v of values) {
+    h = ((h << 5) - h + (v * 1000)) | 0;
+  }
+  return h;
+}
+
 type ExcalidrawElementProps = {
   d: string;
   stroke?: string;
@@ -68,7 +88,8 @@ function generateRoughRect(
   h: number,
   roughness: number,
 ): string {
-  const jitter = () => (Math.random() - 0.5) * roughness;
+  const rand = mulberry32(hashSeed(x, y, w, h, roughness));
+  const jitter = () => (rand() - 0.5) * roughness;
   return [
     `M ${x + jitter()} ${y + jitter()}`,
     `L ${x + w + jitter()} ${y + jitter()}`,
@@ -131,11 +152,13 @@ export const HandDrawnArrow: React.FC<HandDrawnArrowProps> = ({
   delay = 0,
   drawDuration = 0.6,
 }) => {
-  const angle = Math.atan2(y2 - y1, x2 - x1);
   const headLen = 15;
-  const jitter = () => (Math.random() - 0.5) * 2;
 
   const d = React.useMemo(() => {
+    const rand = mulberry32(hashSeed(x1, y1, x2, y2));
+    const jitter = () => (rand() - 0.5) * 2;
+    const angle = Math.atan2(y2 - y1, x2 - x1);
+
     const arrowHead1X = x2 - headLen * Math.cos(angle - Math.PI / 6);
     const arrowHead1Y = y2 - headLen * Math.sin(angle - Math.PI / 6);
     const arrowHead2X = x2 - headLen * Math.cos(angle + Math.PI / 6);
@@ -149,7 +172,6 @@ export const HandDrawnArrow: React.FC<HandDrawnArrowProps> = ({
       `M ${x2} ${y2}`,
       `L ${arrowHead2X + jitter()} ${arrowHead2Y + jitter()}`,
     ].join(" ");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [x1, y1, x2, y2]);
 
   const totalLength =
@@ -189,7 +211,8 @@ export const HandDrawnCircle: React.FC<HandDrawnCircleProps> = ({
   drawDuration = 0.8,
 }) => {
   const d = React.useMemo(() => {
-    const jitter = () => (Math.random() - 0.5) * 2;
+    const rand = mulberry32(hashSeed(cx, cy, r));
+    const jitter = () => (rand() - 0.5) * 2;
     const segments = 12;
     const points: string[] = [];
 
